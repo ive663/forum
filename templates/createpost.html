@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./static/css/createpost.css">
+  <title>Create Post</title>
+</head>
+<body> 
+  <div class="ui">
+    <ul class="list">
+      <li class="item">
+        <div class="heading">Create Post</div>
+          <div id="container">
+            <form method="post" action="createpost">
+              <input type="text" id="inputtitle"  placeholder=" add title..."  name="title" required>
+              <textarea  id="inputmessage" placeholder=" add your text here..." name="message" required></textarea>
+              <input type="text" id="inputcategorytitle" placeholder=" add tags..." name="category" required>
+              <input type="submit" class="button" value="Create Post">
+            </form>
+          </div>
+      </li>
+    </ul>
+  </div>
+  <div id="background"></div>
+  <script src="./static/js/background.js"></script>
+</body>
+</html>

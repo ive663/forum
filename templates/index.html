@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <title>Welcome to Forum!</title>
+  </head>
+  <body>
+    {{ $Auth := .Authorization }}
+    <div id="index">
+      <div class="header">
+        <div class="header-logo">
+          <a href="/" style="color: #50FA7B;">Forum</a>
+        </div>
+        <div class="header-nav">
+          {{ if eq $Auth false}}
+          <a href="/signin"><button  class="btn">Sign-In</button></a>
+          <a href="/signup"><button  class="btn">Sign-Up</button></a>
+          {{ else }}
+          <a href="/createpost"><button  class="btn">Create Post</button></a>
+          <a href="/logout"><button  class="btn">Log out</button></a>
+          {{end}}
+        </div>
+      </div>
+      <div class="content">
+        <p>{{range  .Posts}}</p>
+          <div class="post">
+            <div class="post-header">
+              <h2><a href="/post?id={{.ID}}"><button  class="btn">{{.Title}}</button></a></h2>
+              <p>By <b>{{.Author}}</b></p>
+            </div>
+            <div class="post-content">
+              <p>{{.Message}}</p>
+            </div>
+            <div class="post-category">
+              {{ range .Categories }}
+                <a href="?category={{.Tag}}"><button  class="btn">{{.Tag}}</button></a>
+              {{end}}
+            </div>
+            <div class="post-footer">
+              <div class="post-footer-left">  
+                {{ if eq $Auth false  }}
+                <p><b>{{ .Likes }}👍( ͡❛ ͜ʖ ͡❛)👎{{.Dislikes}}</b></p> 
+                {{ else }}
+                <p><b>{{ .Likes }}<a href="/likepostindex?postid={{.ID}}"style="text-decoration: none;">👍<i class="likebtn"></i><a/>( ͡❛ ͜ʖ ͡❛)<a  href="/dislikepostindex?postid={{.ID}}"style="text-decoration: none;">👎<i class="dislikebtn"></i></a>{{.Dislikes}}</b></p> 
+                {{ end }}
+              </div>
+              <div class="post-footer-right">
+                <p>Created: <b>{{.DateFormat}}</b></p>
+              </div>
+            </div>
+          </div>
+        {{end}}
+      </div>
+      {{ if $Auth }}
+      <div class="footer">
+        <a href="?mypost=mypost"><button class="btn">MY POSTS</button></a>
+        <a href="?mylikedposts=mylikedposts"><button class="btn">LIKED POSTS</button></a>
+      </div>
+      {{end}}
+      <div id="background"></div>
+    </div>
+    <script src="./static/js/background.js"></script>
+  </body>
+</html>

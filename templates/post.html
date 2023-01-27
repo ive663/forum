@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/post.css">
+    <title>Post</title>
+</head>
+<body>
+  {{ $Auth := .Authorization }}
+  <div id="post">
+    <div class="header">
+      <div class="header-logo">
+        <a href="/" style="color: #50FA7B;">Forum</a>
+      </div>
+      <div class="header-nav">
+            {{ if $Auth }}
+            <a href="/createpost"><button  class="btn">Create Post</button></a>
+            <a href="/logout"><button  class="btn">Log out</button></a>
+            {{ else }}
+            <a href="/signup"><button  class="btn">Sign-Up</button></a>
+            <a href="/signin"><button  class="btn">Sign-In</button></a>
+            {{end}}
+        </div>
+    </div>
+  <div class="content">
+    <div class="post">
+      <div class="post-header">
+              <h2>{{.Post.Title}}</h2>
+              <p>By <b>{{.Post.Author}}</b></p>
+            </div>
+            <div class="post-content">
+              <p>{{.Post.Message}}</p>
+            </div>
+            <div class="post-category">
+              {{ range .Post.Categories }}
+                <a href="?category={{.Title}}"><button  class="btn">{{.Post.Title}}</button></a>
+              {{end}}
+            </div>
+            <div class="post-footer">
+              <div class="post-footer-left">
+                {{ if $Auth }}
+                <p><b>{{.PostLikes}}<a href="/likepost?postid={{.Post.ID}}"style="text-decoration: none;">👍<i class="likebtn"></i><a/>( ͡❛ ͜ʖ ͡❛)<a  href="/dislikepost?postid={{.Post.ID}}"style="text-decoration: none;">👎<i class="dislikebtn"></i></a>{{.PostDislikes}}</b></p>
+                {{ else }}
+                <p><b>{{.PostLikes}}👍( ͡❛ ͜ʖ ͡❛)👎{{.PostDislikes}}</b></p>
+                {{end}}
+              </div>
+            </div>
+    </div>
+    <div class="comments-conteiner">
+      <p>{{range  .Comments}}</p>
+          <div class="comment">
+            <div class="comment-header">
+              <p><b>{{.Author}}</b>:</p>
+            </div>
+            <div class="comment-content">
+              <p>{{.Message}}</p>
+            </div>
+              <div class="comment-footer">
+              <div class="comment-footer-left">
+                 {{ if $Auth }}
+                <p><b>{{.Likes}}<a href="/likecomment?commentid={{.ID}}"style="text-decoration: none;">👍<i class="likebtn"></i><a/>( ͡❛ ͜ʖ ͡❛)<a  href="/dislikecomment?commentid={{.ID}}"style="text-decoration: none;">👎<i class="dislikebtn"></i></a>{{.Dislikes}}</b></p>
+                {{ else }}
+                <p><b>{{.Likes}}👍( ͡❛ ͜ʖ ͡❛)👎{{.Dislikes}}</b></p>
+                {{end}}
+              </div>
+              <div class="comment-footer-right">
+                <p>Created: <b>{{.DateFormat}}</b></p>
+              </div>
+            </div>
+          </div>
+        {{end}}
+    </div>
+  </div>
+  {{ if $Auth }}
+    <div class="create-comment-container">
+        <form method="POST" action="/post?id={{ .Post.ID }}">
+          <textarea name="comment" id="comment" placeholder=" add your text here..."  required></textarea>
+          <input type="submit" value="submit" class="sbtn">
+        </form>
+    </div>
+    {{ end }}
+    <div id="background"></div>
+  </div>
+  <script src="/static/js/background.js"></script>
+</body>
+</html>

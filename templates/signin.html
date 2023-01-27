@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign-In</title>
+  <link rel="stylesheet" href="./static/css/auth.css">
+</head>
+<body> 
+  <div class="ui">
+    <ul class="list">
+      <li class="item">
+        <div class="heading">Sign-In</div>
+        <div id="container">
+          <form method="post" action="signin">
+            <input type="text" id="username"  placeholder=" username"  name="username" required> <br><br>
+            <input type="password" id="password" placeholder=" password" name="password" required> <br><br>
+            <input type="submit" class="button" value="Sign In">
+          </form>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="background"></div>
+  <script src="./static/js/background.js"></script>
+</body>
+</html>

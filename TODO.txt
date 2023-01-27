@@ -1,0 +1,7 @@
+1. удалить все фмт выводы и заменить на лог.. добавить вывод логов... 
+
+ОБРАЗЕЦ:
+    log.Println("ERROR:delivery:Auth:signin:GeneratSessToken: ", err)
+    log.Println("INFO:delivery:Auth:signin:GeneratSessToken: ", token)
+
+2. исправить ВСЕ лог принт если они не как в примере... 
