@@ -1,5 +1,8 @@
 ## Forum Project ##
 
+## V0.1.1 ## 
+This project was made during my education in the 01.Alem.School... 
+
 This project consists in creating a web forum that allows:
 
 - Communication between users.
@@ -8,7 +11,7 @@ This project consists in creating a web forum that allows:
 - Filtering posts.
 
 To run project: 
-    ` git clone git@git.01.alem.school:Mr.RobotDumbazz/forum.git`
+    ` git clone https://github.com/ive663/forum.git`
 
 Write in terminal: 
     ` go run ./cmd`
